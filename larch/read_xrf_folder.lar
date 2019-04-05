@@ -1,0 +1,54 @@
+
+xrfList = []
+mcaList = []
+
+def get_xrflist(folderpath):
+    cd(folderpath)
+    xrfFiles = ls('*.xrf')
+    print(ls('.'))
+
+    for i in xrfFiles:
+        #g = read_gsemca(i)
+        #print(i)
+        xrfList.append(i)
+    endfor
+    return(xrfList)
+enddef
+
+
+
+def get_mcalist(folderpath):
+    cd(folderpath)
+    xrfFiles = ls('*.xrf')
+    print(ls('.'))
+    for i in xrfFiles:
+        g = read_gsemca(i)
+        #print(g)
+        mcaList.append(g)
+    endfor
+    return(mcaList)
+enddef
+
+
+
+
+def registerLarchPlugin():
+    return ('_xrf', {'get_xrflist': get_xrflist,
+                    'get_mcalist': get_mcalist }
+            )
+enddef
+
+
+
+
+ '''
+def registerLarchPlugin(): # must have a function with this name!
+    return ('get_mcalist', {'get_mcalist': get_mcalist
+                            })
+
+'''
+#add_plugin('minimizer')
+
+
+
+#read_xrd_netcdf(
