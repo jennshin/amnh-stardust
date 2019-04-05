@@ -1,0 +1,37 @@
+addplugin('walkdirectory')
+
+fileList = []
+mcaList = []
+
+def get_xrflist(folderpath):
+    cd(folderpath)
+    xrfFiles = ls('*.xrf')
+    print(ls('.'))
+
+    for i in xrfFiles:
+        #g = read_gsemca(i)
+        #print(i)
+        fileList.append(i)
+    endfor
+    return(fileList)
+enddef
+
+def get_mcalist(folderpath):
+    cd(folderpath)
+    xrfFiles = ls('*.xrf')
+    print(ls('.'))
+    for i in xrfFiles:
+        g = read_gsemca(i)
+        #print(g)
+        fileList.append(g)
+    endfor
+    return(fileList)
+enddef
+
+
+
+
+def registerLarchPlugin():
+    return ('xrf', {'get_xrflist': get_xrflist,
+                    'get_mcalist': get_mcalist }
+            )
